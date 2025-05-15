@@ -2,9 +2,21 @@ import java.util.*;
 
 import modelo.Marca;
 import modelo.Vehiculo;
+import java.sql.Connection;
+import java.sql.SQLException;
+import conexion.ConexionBD;
 
 public class Main {
+
     public static void main(String[] args) {
+      try (Connection conn = ConexionBD.getConnection()) {
+            if (conn != null) {
+                System.out.println("✅ Conexión exitosa a la base de datos 'taller'.");
+
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al conectar: " + e.getMessage());
+        }
         Scanner scanner = new Scanner(System.in);
 
         // Paso 1: Array de nombres de marcas
@@ -28,15 +40,12 @@ public class Main {
 
         // Paso 3: Crear LinkedList para Vehículos
         LinkedList<Vehiculo> listaVehiculos = new LinkedList<>();
-
         String opcion;
         do {
             System.out.print("\nIngrese patente del vehículo: ");
             String patente = scanner.nextLine();
-
             System.out.print("Ingrese nombre de la marca: ");
             String nombreMarca = scanner.nextLine();
-
             // Buscar la marca
             Marca marcaSeleccionada = null;
             for (Marca m : listaMarcas) {
@@ -45,14 +54,12 @@ public class Main {
                     break;
                 }
             }
-
             if (marcaSeleccionada != null) {
                 listaVehiculos.add(new Vehiculo(patente, marcaSeleccionada));
                 System.out.println("Vehículo agregado.");
             } else {
                 System.out.println("Marca no encontrada.");
             }
-
             System.out.print("¿Desea agregar otro vehículo? (s/n): ");
             opcion = scanner.nextLine();
         } while (opcion.equalsIgnoreCase("s"));

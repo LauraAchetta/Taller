@@ -1,5 +1,4 @@
 package modelo;
-// Vehiculo.java
 
 public class Vehiculo {
     private String patente;
