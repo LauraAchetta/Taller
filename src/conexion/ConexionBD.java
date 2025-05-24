@@ -8,7 +8,7 @@ public class ConexionBD {
     // Configuración de la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/taller"; // URL de la base de datos
     private static final String USER = "root"; // Usuario de la base de datos
-    private static final String PASSWORD = "Applus01$"; // Contraseña de la base de datos
+    private static final String PASSWORD = "ladeuds."; // Contraseña de la base de datos
 
     // Método para obtener la conexión a la base de datos
     public static Connection getConnection() throws SQLException {
